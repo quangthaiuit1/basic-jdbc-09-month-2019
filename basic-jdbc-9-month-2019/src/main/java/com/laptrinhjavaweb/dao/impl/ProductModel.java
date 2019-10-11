@@ -43,7 +43,6 @@ public class ProductModel implements iProductModel{
 					results.add(category);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
