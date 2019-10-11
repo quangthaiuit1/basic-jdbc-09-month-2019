@@ -1,3 +1,11 @@
+com\laptrinhjavaweb\model\RoleModel.class
+com\laptrinhjavaweb\service\impl\ProductService.class
+com\laptrinhjavaweb\service\iProductService.class
 com\laptrinhjavaweb\model\UserModel.class
+com\laptrinhjavaweb\model\CategoryModel.class
+com\laptrinhjavaweb\dao\impl\ProductDAO.class
+com\laptrinhjavaweb\dao\iProductDAO.class
+com\laptrinhjavaweb\model\ProductModel.class
+com\laptrinhjavaweb\model\ProductTypeModel.class
 com\laptrinhjavaweb\controller\web\HomeController.class
 com\laptrinhjavaweb\controller\admin\HomeController.class
