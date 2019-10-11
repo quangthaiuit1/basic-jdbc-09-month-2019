@@ -3,9 +3,9 @@ package com.laptrinhjavaweb.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import com.laptrinhjavaweb.model.CategoryModel;
+import com.laptrinhjavaweb.model.ProductModel;
 
-public interface iProductModel {
+public interface iProductDAO {
 	public Connection getConnection();
-	public List<CategoryModel> findAll();
+	public List<ProductModel> findAll();
 }
