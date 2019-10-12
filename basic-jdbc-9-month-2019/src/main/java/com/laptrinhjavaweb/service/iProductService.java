@@ -1,7 +1,9 @@
 package com.laptrinhjavaweb.service;
 import java.util.List;
-import com.laptrinhjavaweb.model.ProductModel;
+
+import com.laptrinhjavaweb.entity.Product;
 
 public interface iProductService {
-	public List<ProductModel> findAll();
+	public List<Product> findAll();
+	public List<Product> findByCategoryId(int x);
 }

@@ -1,9 +1,9 @@
-package com.laptrinhjavaweb.model;
+package com.laptrinhjavaweb.entity;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
 
-public class ProductModel {
+public class Product {
 	private int id;
 	private String name;
 	private String description;
@@ -12,12 +12,18 @@ public class ProductModel {
 	private int productTypeId;
 	private String imageName;
 	private Blob imageData;
-	private int createdBy;
-	private int modifiedBy;
+	private String createdBy;
+	private String modifiedBy;
 	private Timestamp createdDay;
 	private Timestamp modifiedDay;
 	public int getId() {
 		return id;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -63,18 +69,6 @@ public class ProductModel {
 	}
 	public void setImageData(Blob imageData) {
 		this.imageData = imageData;
-	}
-	public int getCreatedBy() {
-		return createdBy;
-	}
-	public void setCreatedBy(int createdBy) {
-		this.createdBy = createdBy;
-	}
-	public int getModifiedBy() {
-		return modifiedBy;
-	}
-	public void setModifiedBy(int modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 	public Timestamp getCreatedDay() {
 		return createdDay;
