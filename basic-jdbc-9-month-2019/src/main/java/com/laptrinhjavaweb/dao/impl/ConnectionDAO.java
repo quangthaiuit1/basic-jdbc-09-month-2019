@@ -21,13 +21,10 @@ public class ConnectionDAO {
 		}
 	}
 
-	public static boolean closeConnection(Connection con,ResultSet rs,PreparedStatement ps) {
+	public static boolean closeConnection(Connection con,PreparedStatement ps) {
 		try {
 			if(con != null) {
 				con.close();
-			}
-			if(rs != null) {
-				rs.close();
 			}
 			if(ps != null) {
 				ps.close();
