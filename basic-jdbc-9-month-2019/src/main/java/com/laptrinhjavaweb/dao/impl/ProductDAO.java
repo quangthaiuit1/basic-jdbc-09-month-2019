@@ -1,16 +1,17 @@
 package com.laptrinhjavaweb.dao.impl;
+import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.laptrinhjavaweb.dao.iProductDAO;
-import com.laptrinhjavaweb.entity.*;
+import com.laptrinhjavaweb.entity.Product;
 public class ProductDAO implements iProductDAO{
-
-
+	
+	
 	@Override
 	public List<Product> findAll() {
 		List<Product> results = new ArrayList<Product>();
@@ -47,7 +48,9 @@ public class ProductDAO implements iProductDAO{
 				return null;
 			}finally {
 				try {
-					ConnectionDAO.closeConnection(con, resultSet, statement);
+					ConnectionDAO.closeConnection(con, statement);
+					if(resultSet != null)
+						resultSet.close();
 				} catch (Exception e2) {
 					return null;
 				}
@@ -90,7 +93,9 @@ public class ProductDAO implements iProductDAO{
 				return null;
 			}finally {
 				try {
-					ConnectionDAO.closeConnection(con, resultSet, statement);
+					ConnectionDAO.closeConnection(con, statement);
+					if(resultSet != null)
+						resultSet.close();
 				} catch (Exception e2) {
 					return null;
 				}
@@ -99,4 +104,28 @@ public class ProductDAO implements iProductDAO{
 		return null;
 	}
 
+	@Override
+	public void addOne(Product product) {
+		Connection con = ConnectionDAO.getConnection();
+		PreparedStatement statement = null;
+		String sql = "INSERT INTO table_name (name, price, categoryId, productTypeId, imageName,imageData) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			statement = con.prepareStatement(sql);
+			statement.setString(1, product.getName());
+			statement.setDouble(2, product.getPrice());
+			statement.setInt(3, product.getCategoryId());
+			statement.setInt(4, product.getProductTypeId());
+			statement.setString(5, product.getImageName());
+			statement.setBlob(6, product.getImageData());
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				ConnectionDAO.closeConnection(con, statement);
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+	}
 }

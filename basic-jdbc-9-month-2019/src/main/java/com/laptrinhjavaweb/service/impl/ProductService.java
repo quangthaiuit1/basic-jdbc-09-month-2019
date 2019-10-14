@@ -21,5 +21,9 @@ public class ProductService implements iProductService {
 		productDao.findByCategoryId(x);
 		return null;
 	}
+	@Override
+	public void addOne(Product product) {
+		productDao.addOne(product);
+	}
 
 }
