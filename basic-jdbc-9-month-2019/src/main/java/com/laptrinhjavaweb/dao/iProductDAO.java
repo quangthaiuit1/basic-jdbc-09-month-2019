@@ -1,11 +1,10 @@
 package com.laptrinhjavaweb.dao;
 
-import java.sql.Connection;
 import java.util.List;
 
-import com.laptrinhjavaweb.model.ProductModel;
+import com.laptrinhjavaweb.entity.Product;
 
 public interface iProductDAO {
-	public Connection getConnection();
-	public List<ProductModel> findAll();
+	public List<Product> findAll();
+	public List<Product> findByCategoryId(int x);
 }
