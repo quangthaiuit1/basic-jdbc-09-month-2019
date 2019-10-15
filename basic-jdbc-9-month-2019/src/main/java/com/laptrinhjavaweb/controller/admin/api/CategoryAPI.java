@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.laptrinhjavaweb.entity.Category;
-import com.laptrinhjavaweb.service.iCategoryService;
-import com.laptrinhjavaweb.service.impl.CategoryService;
+import com.laptrinhjavaweb.service.CategoryService;
 import com.laptrinhjavaweb.utils.HttpUtil;
 
 @WebServlet(urlPatterns = { "/api-admin-category" })
 public class CategoryAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private iCategoryService categoryService;
+	private CategoryService categoryService;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

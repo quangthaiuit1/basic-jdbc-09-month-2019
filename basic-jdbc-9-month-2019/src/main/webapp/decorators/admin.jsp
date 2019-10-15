@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 
 <!DOCTYPE html>
@@ -7,6 +8,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
 <title>Dashboard - Ace Admin</title>
+
+<!-- Table bootstrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  	<script src="<c:url value='/template/admin/js/jquery.twbsPagination.js' /> "></script>
+  	<script src="<c:url value='/template/admin/js/jquery.twbsPagination.min.js' /> "></script>
+<!-- End table bootstrap -->
 
 <meta name="description" content="overview &amp; stats" />
 <meta name="viewport"
@@ -25,6 +36,18 @@
 <link rel="stylesheet"
 	href="<c:url value='/template/admin/css/ace-rtl.min.css' /> " />
 <script src="<c:url value='/template/admin/js/ace-extra.min.js' /> "></script>
+
+<!-- style -->
+<style>
+	table, th, td {
+		
+	}
+	
+	th, td {
+		padding: 5px;
+		text-align: left;
+	}
+</style>
 
 </head>
 
@@ -83,13 +106,19 @@
 	<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
-	<script src="<c:url value='/template/admin/js/jquery-ui.custom.min.js' /> "></script>
-	<script src="<c:url value='/template/admin/js/jquery.ui.touch-punch.min.js' /> "></script>
-	<script src="<c:url value='/template/admin/js/jquery.easypiechart.min.js' /> "></script>
-	<script src="<c:url value='/template/admin/js/jquery.sparkline.index.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery-ui.custom.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery.ui.touch-punch.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery.easypiechart.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery.sparkline.index.min.js' /> "></script>
 	<script src="<c:url value='/template/admin/js/jquery.flot.min.js' /> "></script>
-	<script src="<c:url value='/template/admin/js/jquery.flot.pie.min.js' /> "></script>
-	<script src="<c:url value='/template/admin/js/jquery.flot.resize.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery.flot.pie.min.js' /> "></script>
+	<script
+		src="<c:url value='/template/admin/js/jquery.flot.resize.min.js' /> "></script>
 
 	<!-- ace scripts -->
 	<script src="<c:url value='/template/admin/js/ace-elements.min.js' /> "></script>

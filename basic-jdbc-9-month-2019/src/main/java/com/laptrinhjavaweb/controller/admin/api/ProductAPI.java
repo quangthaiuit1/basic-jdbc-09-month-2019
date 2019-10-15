@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.laptrinhjavaweb.entity.Product;
-import com.laptrinhjavaweb.service.iProductService;
-import com.laptrinhjavaweb.service.impl.ProductService;
+import com.laptrinhjavaweb.service.ProductService;
 import com.laptrinhjavaweb.utils.HttpUtil;
 
 @WebServlet(urlPatterns = { "/api-admin-product" })
 public class ProductAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private iProductService productService;
+	private ProductService productService;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
