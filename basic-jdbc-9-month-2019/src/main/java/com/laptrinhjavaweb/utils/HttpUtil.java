@@ -19,7 +19,7 @@ public class HttpUtil {
 		}
 		return null;
 	}
-
+	
 	public static HttpUtil of(BufferedReader bufferedReader) {
 		StringBuilder stringBuilder = new StringBuilder();
 		String line = null;

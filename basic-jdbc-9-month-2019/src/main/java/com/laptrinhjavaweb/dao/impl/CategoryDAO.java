@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +50,53 @@ public class CategoryDAO implements iCategoryDAO {
 	public void addOne(Category category) {
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "INSERT INTO category (name) VALUES (?)";
+		String sql = "INSERT INTO category (name, created_date) VALUES (?,?)";
 		try {
 			statement = con.prepareStatement(sql);
 			statement.setString(1, category.getName());
+			statement.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				ConnectionDAO.closeConnection(con, statement);
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void updateOne(Category category) {
+		Connection con = ConnectionDAO.getConnection();
+		PreparedStatement statement = null;
+		String sql = "UPDATE category set name = ?, modified_date = ? where id = ?";
+		try {
+			statement = con.prepareStatement(sql);
+			statement.setString(1, category.getName());
+			statement.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			statement.setInt(3, category.getId());
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				ConnectionDAO.closeConnection(con, statement);
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void delete(int id) {
+		Connection con = ConnectionDAO.getConnection();
+		PreparedStatement statement = null;
+		String sql = "DELETE FROM category where id = ?";
+		try {
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, id);
 			statement.execute();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

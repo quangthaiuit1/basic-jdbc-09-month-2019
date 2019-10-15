@@ -7,9 +7,18 @@ public class Category {
 	private String name;
 	private Timestamp createdDate;
 	private Timestamp modifiedDate;
-
+	private int[] ids;
+	
 	public int getId() {
 		return id;
+	}
+
+	public int[] getIds() {
+		return ids;
+	}
+
+	public void setIds(int[] ids) {
+		this.ids = ids;
 	}
 
 	public void setId(int id) {

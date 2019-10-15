@@ -20,5 +20,15 @@ public class CategoryService implements iCategoryService {
 	public void addOne(Category category) {
 		categoryDao.addOne(category);
 	}
+	@Override
+	public void updateOne(Category category) {
+		categoryDao.updateOne(category);
+	}
+	@Override
+	public void delete(int[] id) {
+		for(int i = 0; i < id.length; i++) {
+			categoryDao.delete(id[i]);
+		}
+	}
 
 }
