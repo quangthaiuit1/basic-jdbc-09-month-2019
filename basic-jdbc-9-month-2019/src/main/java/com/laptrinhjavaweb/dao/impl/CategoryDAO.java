@@ -49,7 +49,7 @@ public class CategoryDAO implements iCategoryDAO {
 	public void addOne(Category category) {
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "INSERT INTO table_name (name) VALUES (?)";
+		String sql = "INSERT INTO category (name) VALUES (?)";
 		try {
 			statement = con.prepareStatement(sql);
 			statement.setString(1, category.getName());
