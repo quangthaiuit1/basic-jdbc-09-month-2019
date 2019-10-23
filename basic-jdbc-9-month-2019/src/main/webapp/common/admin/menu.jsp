@@ -13,7 +13,7 @@
 				<th>CATEGORY</th>
 			</tr>
 			<tr style="width: 100%;border: 1px solid black;border-collapse: collapse;">
-				<td> <a href='<c:url value="/admin-category" />'>List</a></td>
+				<td> <a href='<c:url value="/admin-category?page=1" />'>List</a></td>
 			</tr>
 			<tr>
 				<td>February</td>

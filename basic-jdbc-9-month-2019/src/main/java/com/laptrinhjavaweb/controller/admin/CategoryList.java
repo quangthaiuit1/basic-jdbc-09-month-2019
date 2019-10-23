@@ -19,9 +19,24 @@ public class CategoryList extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		int totalPages = CategoryService.totalPages(3);
+		request.setAttribute("totalPages", totalPages);
 		List<Category> list = new ArrayList<Category>();
-		list = CategoryService.findAll();
+		
+		//check page the first
+		String pageStr = request.getParameter("page");
+		int page;
+		int maxItemOnPage = 3;
+		if(pageStr == null) {
+			list = CategoryService.findByRows(0, maxItemOnPage);
+		}
+		else{
+			page = Integer.parseInt(pageStr);
+			int offset = ((page - 1) * maxItemOnPage) + 1;
+			list = CategoryService.findByRows(offset, maxItemOnPage);
+		}
+		
+		
 		request.setAttribute("categoryList", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/categorylist.jsp");
 		rd.forward(request, response);

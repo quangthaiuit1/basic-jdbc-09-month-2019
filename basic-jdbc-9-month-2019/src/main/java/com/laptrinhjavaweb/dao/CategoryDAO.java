@@ -43,6 +43,40 @@ public class CategoryDAO {
 		}
 		return null;
 	}
+	//Select pagination
+	public static List<Category> findByRows(int offset, int limit) {
+		List<Category> results = new ArrayList<Category>();
+		Connection con = ConnectionDAO.getConnection();
+		PreparedStatement statement = null;
+		String sql = "select * from category Orders LIMIT ?, ?";
+		ResultSet resultSet = null;
+		if (con != null) {
+			try {
+				statement = con.prepareStatement(sql);
+				statement.setInt(1, offset);
+				statement.setInt(2, limit);
+				resultSet = statement.executeQuery();
+				while (resultSet.next()) {
+					Category category = new Category();
+					category.setId(resultSet.getInt("id"));
+					category.setName(resultSet.getNString("name"));
+					results.add(category);
+				}
+				return results;
+			} catch (SQLException e) {
+				return null;
+			} finally {
+				try {
+					ConnectionDAO.closeConnection(con, statement);
+					if (resultSet != null)
+						resultSet.close();
+				} catch (Exception e2) {
+					return null;
+				}
+			}
+		}
+		return null;
+	}
 
 	public static void addOne(Category category) {
 		Connection con = ConnectionDAO.getConnection();

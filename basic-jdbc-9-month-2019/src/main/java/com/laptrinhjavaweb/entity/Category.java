@@ -8,7 +8,6 @@ public class Category {
 	private Timestamp createdDate;
 	private Timestamp modifiedDate;
 	private int[] ids;
-	
 	public int getId() {
 		return id;
 	}
