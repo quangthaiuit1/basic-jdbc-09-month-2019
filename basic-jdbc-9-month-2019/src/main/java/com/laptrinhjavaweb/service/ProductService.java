@@ -1,25 +1,30 @@
 package com.laptrinhjavaweb.service;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.laptrinhjavaweb.dao.ProductDAO;
 import com.laptrinhjavaweb.entity.Product;
 
 public class ProductService {
-	private ProductDAO productDao;
 	
-	public ProductService() {
-		productDao = new ProductDAO();
+	
+	public static List<Product> findAll() {
+		return ProductDAO.findAll();
 	}
-	public List<Product> findAll() {
-		return productDao.findAll();
+	public static List<Product> findByLimit(int offset,int limit){
+		return ProductDAO.findByLimit(offset, limit);
 	}
-	public List<Product> findByCategoryId(int x) {
-		productDao.findByCategoryId(x);
-		return null;
+	public static List<Product> findByCategoryId(int x) {
+		return ProductDAO.findByCategoryId(x);
 	}
-	public void addOne(Product product) throws FileNotFoundException {
-		productDao.addOne(product);
+	public static void addOne(Product product) throws FileNotFoundException {
+		ProductDAO.addOne(product);
+	}
+	public static int totalPages(int maxItemOnePage) {
+		List<Product> list = new ArrayList<Product>();
+		list = ProductDAO.findAll();
+		return list.size() / maxItemOnePage;
 	}
 
 }

@@ -8,16 +8,37 @@
 	class="sidebar                  responsive                    ace-save-state">
 	<div id="sidebar"
 		class="sidebar                  responsive                    ace-save-state">
-		<table style="width: 100%;border: 1px solid black;border-collapse: collapse;">
-			<tr style="width: 100%;border: 1px solid black;border-collapse: collapse;">
-				<th>CATEGORY</th>
-			</tr>
-			<tr style="width: 100%;border: 1px solid black;border-collapse: collapse;">
-				<td> <a href='<c:url value="/admin-category?page=1" />'>List</a></td>
-			</tr>
-			<tr>
-				<td>February</td>
-			</tr>
-		</table>
+		<div class="" style="padding-left: 0px;padding-right: 0px; ">
+			<div class="dropdown">
+				<button type="button" style="width:100%" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+					Danh mục sản phẩm
+				</button>
+				<div class="dropdown-menu" >
+					<button type="button" style="width:100%;" class="btn btn-defaut" >
+						<a class="dropdown-item" href="<c:url value='/admin-category?page=1' /> " style="color:#ffffffff">Danh sách</a>
+					</button>
+					<button type="button" style="width:100%" class="btn .btn-default">
+						<a class="dropdown-item" href="/category-admin?page=1" style="color:#ffffffff">Thêm</a>
+					</button>
+					
+				</div>
+			</div>
+		</div>
+		<div class="" style="padding-left: 0px;padding-right: 0px; ">
+			<div class="dropdown">
+				<button type="button" style="width:100%" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+					Sản Phẩm
+				</button>
+				<div class="dropdown-menu" >
+					<button type="button" style="width:100%;" class="btn btn-defaut" >
+						<a class="dropdown-item" href="<c:url value='/admin-product?page=1' /> " style="color:#ffffffff">Danh sách</a>
+					</button>
+					<button type="button" style="width:100%" class="btn .btn-default">
+						<a class="dropdown-item" href="/category-admin?page=1" style="color:#ffffffff">Thêm</a>
+					</button>
+					
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

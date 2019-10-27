@@ -10,7 +10,7 @@ public class CategoryService {
 	public static List<Category> findAll() {
 		return CategoryDAO.findAll();
 	}
-	public static List<Category> findByRows(int offset,int limit){
+	public static List<Category> findByLimit(int offset,int limit){
 		return CategoryDAO.findByRows(offset, limit);
 	}
 	// return total page of table based on number items one page

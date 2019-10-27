@@ -11,17 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.laptrinhjavaweb.entity.Category;
-import com.laptrinhjavaweb.service.CategoryService;
+import com.laptrinhjavaweb.entity.Product;
+import com.laptrinhjavaweb.service.ProductService;
 
-@WebServlet(urlPatterns = {"/admin-category"})
-public class CategoryListController extends HttpServlet{
+@WebServlet(urlPatterns = {"/admin-product"})
+public class ProductListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int totalPages = CategoryService.totalPages(3);
+		int totalPages = ProductService.totalPages(3);
 		request.setAttribute("totalPages", totalPages);
-		List<Category> list = new ArrayList<Category>();
+		List<Product> list = new ArrayList<Product>();
 		
 		//Get param on url
 		String pageStr = request.getParameter("page");
@@ -30,18 +31,18 @@ public class CategoryListController extends HttpServlet{
 		if(Integer.parseInt(pageStr)==1) {
 			//This is page current in view
 			request.setAttribute("currentPage",Integer.parseInt(pageStr));
-			list = CategoryService.findByLimit(0, maxItemOnPage);
+			list = ProductService.findByLimit(0, maxItemOnPage);
 		}
 		else{
 			// This is page current in view
 			request.setAttribute("currentPage",Integer.parseInt(pageStr));
 			int offset = ((Integer.parseInt(pageStr) - 1) * maxItemOnPage) + 1;
-			list = CategoryService.findByLimit(offset, maxItemOnPage);
+			list = ProductService.findByLimit(offset, maxItemOnPage);
 		}
 		
-		
-		request.setAttribute("categoryList", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/categorylist.jsp");
+		request.setAttribute("productList", list);
+
+		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/productlist.jsp");
 		rd.forward(request, response);
 	}
 }

@@ -1,7 +1,6 @@
 package com.laptrinhjavaweb.entity;
 
 import java.io.File;
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Product {
@@ -12,12 +11,13 @@ public class Product {
 	private int categoryId;
 	private int productTypeId;
 	private String imageName;
-	private Blob imageData;
+	private byte[] imageData;
 	private File imageFile;
-	private String createdBy;
-	private String modifiedBy;
-	private Timestamp createdDay;
-	private Timestamp modifiedDay;
+	/*
+	 * private String createdBy; private String modifiedBy;
+	 */
+	private Timestamp createdDate;
+	private Timestamp modifiedDate;
 	
 	public File getImageFile() {
 		return imageFile;
@@ -28,13 +28,12 @@ public class Product {
 	public int getId() {
 		return id;
 	}
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-	public void setId(int id) {
+
+	/*
+	 * public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+	 * public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy;
+	 * }
+	 */public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -73,24 +72,23 @@ public class Product {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-	public Blob getImageData() {
+	public byte[] getImageData() {
 		return imageData;
 	}
-	public void setImageData(Blob imageData) {
-		
+	public void setImageData(byte[] imageData) {
 		this.imageData = imageData;
 	}
-	public Timestamp getCreatedDay() {
-		return createdDay;
+	public Timestamp getCreatedDate() {
+		return createdDate;
 	}
-	public void setCreatedDay(Timestamp createdDay) {
-		this.createdDay = createdDay;
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
 	}
-	public Timestamp getModifiedDay() {
-		return modifiedDay;
+	public Timestamp getModifiedDate() {
+		return modifiedDate;
 	}
-	public void setModifiedDay(Timestamp modifiedDay) {
-		this.modifiedDay = modifiedDay;
+	public void setModifiedDate(Timestamp modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	
 }
