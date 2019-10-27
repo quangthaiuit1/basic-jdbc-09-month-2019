@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.entity;
 
+import java.io.File;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
@@ -12,10 +13,18 @@ public class Product {
 	private int productTypeId;
 	private String imageName;
 	private Blob imageData;
+	private File imageFile;
 	private String createdBy;
 	private String modifiedBy;
 	private Timestamp createdDay;
 	private Timestamp modifiedDay;
+	
+	public File getImageFile() {
+		return imageFile;
+	}
+	public void setFileImage(File imageFile) {
+		this.imageFile = imageFile;
+	}
 	public int getId() {
 		return id;
 	}
@@ -68,6 +77,7 @@ public class Product {
 		return imageData;
 	}
 	public void setImageData(Blob imageData) {
+		
 		this.imageData = imageData;
 	}
 	public Timestamp getCreatedDay() {

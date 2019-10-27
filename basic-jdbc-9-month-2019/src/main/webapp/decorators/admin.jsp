@@ -16,7 +16,7 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   	<script src="<c:url value='/template/admin/js/jquery.twbsPagination.js' /> "></script>
-  	<script src="<c:url value='/template/admin/js/jquery.twbsPagination.min.js' /> "></script>
+  	
 <!-- End table bootstrap -->
 
 <meta name="description" content="overview &amp; stats" />
@@ -86,7 +86,7 @@
 	<!-- basic scripts -->
 
 	<!--[if !IE]> -->
-	<script src="<c:url value='/template/admin/js/jquery-2.1.4.min.js' /> "> </script>
+	<%-- <script src="<c:url value='/template/admin/js/jquery-2.1.4.min.js' /> "> </script> --%>
 
 	<!-- <![endif]-->
 

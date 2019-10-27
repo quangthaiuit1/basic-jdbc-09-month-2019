@@ -1,4 +1,5 @@
 package com.laptrinhjavaweb.service;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.laptrinhjavaweb.dao.ProductDAO;
@@ -17,7 +18,7 @@ public class ProductService {
 		productDao.findByCategoryId(x);
 		return null;
 	}
-	public void addOne(Product product) {
+	public void addOne(Product product) throws FileNotFoundException {
 		productDao.addOne(product);
 	}
 

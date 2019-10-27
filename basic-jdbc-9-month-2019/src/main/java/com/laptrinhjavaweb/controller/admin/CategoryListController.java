@@ -15,7 +15,7 @@ import com.laptrinhjavaweb.entity.Category;
 import com.laptrinhjavaweb.service.CategoryService;
 
 @WebServlet(urlPatterns = {"/admin-category"})
-public class CategoryList extends HttpServlet{
+public class CategoryListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -23,16 +23,19 @@ public class CategoryList extends HttpServlet{
 		request.setAttribute("totalPages", totalPages);
 		List<Category> list = new ArrayList<Category>();
 		
-		//check page the first
+		//Get param on url
 		String pageStr = request.getParameter("page");
-		int page;
+		//Numbers item on one page
 		int maxItemOnPage = 3;
-		if(pageStr == null) {
+		if(Integer.parseInt(pageStr)==1) {
+			//This is page current in view
+			request.setAttribute("currentPage",Integer.parseInt(pageStr));
 			list = CategoryService.findByRows(0, maxItemOnPage);
 		}
 		else{
-			page = Integer.parseInt(pageStr);
-			int offset = ((page - 1) * maxItemOnPage) + 1;
+			// This is page current in view
+			request.setAttribute("currentPage",Integer.parseInt(pageStr));
+			int offset = ((Integer.parseInt(pageStr) - 1) * maxItemOnPage) + 1;
 			list = CategoryService.findByRows(offset, maxItemOnPage);
 		}
 		

@@ -1,8 +1,11 @@
 package com.laptrinhjavaweb.dao;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,21 +103,26 @@ public class ProductDAO {
 		return null;
 	}
 
-	public void addOne(Product product) {
+	public void addOne(Product product) throws FileNotFoundException {
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "INSERT INTO table_name (name, price, categoryId, productTypeId, imageName,imageData) VALUES (?, ?, ?, ?, ?, ?)";
+		FileInputStream fileInput = null;
+		String sql = "INSERT INTO product (name, price, category_id, producttype_id,created_date,image_name,image_data) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
+			
+			fileInput = new FileInputStream(product.getImageFile());
+			
 			statement = con.prepareStatement(sql);
 			statement.setString(1, product.getName());
 			statement.setDouble(2, product.getPrice());
 			statement.setInt(3, product.getCategoryId());
 			statement.setInt(4, product.getProductTypeId());
-			statement.setString(5, product.getImageName());
-			statement.setBlob(6, product.getImageData());
-			statement.execute();
+			statement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+			statement.setString(6, product.getImageName());
+			statement.setBlob(7, fileInput);
+			statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}finally {
 			try {
 				ConnectionDAO.closeConnection(con, statement);
