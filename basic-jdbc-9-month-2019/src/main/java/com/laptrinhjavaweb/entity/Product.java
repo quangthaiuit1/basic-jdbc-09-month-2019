@@ -9,7 +9,9 @@ public class Product {
 	private String description;
 	private double price;
 	private int categoryId;
+	private String categoryName;
 	private int productTypeId;
+	private String productTypeName;
 	private String imageName;
 	private byte[] imageData;
 	private File imageFile;
@@ -89,6 +91,18 @@ public class Product {
 	}
 	public void setModifiedDate(Timestamp modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getProductTypeName() {
+		return productTypeName;
+	}
+	public void setProductTypeName(String productTypeName) {
+		this.productTypeName = productTypeName;
 	}
 	
 }

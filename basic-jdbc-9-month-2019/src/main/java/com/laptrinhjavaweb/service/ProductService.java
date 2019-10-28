@@ -24,7 +24,11 @@ public class ProductService {
 	public static int totalPages(int maxItemOnePage) {
 		List<Product> list = new ArrayList<Product>();
 		list = ProductDAO.findAll();
-		return list.size() / maxItemOnePage;
+		if(list.size() % maxItemOnePage == 0) {
+			return list.size() / maxItemOnePage;
+		}
+		else return (list.size() / maxItemOnePage) + 1;
+		 
 	}
 
 }

@@ -33,8 +33,8 @@
 						<!-- Chỗ đây là cái hình -->
 						
 						<td></td>
-						<td>${item.categoryId}</td>
-						<td>${item.productTypeId}</td>
+						<td>${item.categoryName}</td>
+						<td>${item.productTypeName}</td>
 						<td>${item.createdDate}</td>
 						<td><button type="button" style="width:90%;" class="btn btn-warning">Sửa</button></td>
 						<td><button type="button" style="width:90%;" class="btn btn-danger">Xóa</button></td>

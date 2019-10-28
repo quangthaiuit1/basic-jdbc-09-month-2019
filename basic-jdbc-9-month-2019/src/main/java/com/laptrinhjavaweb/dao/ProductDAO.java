@@ -68,7 +68,17 @@ public class ProductDAO {
 	public static List<Product> findByLimit(int offset,int limit){
 		List<Product> results = new ArrayList<Product>();
 		Connection con = ConnectionDAO.getConnection();
-		String sql = "select * from product Orders LIMIT ?, ?";
+		String sql = "SELECT  news.id, news.name, news.description, news.price, news.category_name,\r\n" + 
+				"				news.created_date, news.image_data, news.producttype_id, pt.name as producttype_name, news.category_id,\r\n" + 
+				"					news.modified_date\r\n" + 
+				"	   FROM \r\n" + 
+				"			(SELECT p.id, p.name, p.description, p.price, c.name as category_name,\r\n" + 
+				"				p.created_date, p.image_data, p.producttype_id, p.category_id,p.modified_date \r\n" + 
+				"					FROM product as p \r\n" + 
+				"						INNER JOIN category as c ON p.category_id = c.id) \r\n" + 
+				"							as news \r\n" + 
+				"								INNER JOIN product_type as pt ON news.producttype_id = pt.id LIMIT ? ,?;\r\n" + 
+				"";
 		ResultSet resultSet = null;
 		PreparedStatement statement = null;
 		
@@ -87,18 +97,21 @@ public class ProductDAO {
 					product.setId(resultSet.getInt("id"));
 					product.setName(resultSet.getString("name"));
 					product.setPrice(resultSet.getDouble("price"));
-					product.setImageName(resultSet.getString("image_name"));
+					
 					img = resultSet.getBlob("image_data");
 					product.setImageData(img.getBytes(1,(int)img.length()));
 					product.setDescription(resultSet.getString("description"));
 					product.setCategoryId(resultSet.getInt("category_id"));
 					product.setProductTypeId(resultSet.getInt("producttype_id"));
+					product.setCategoryName(resultSet.getString("category_name"));
+					product.setProductTypeName(resultSet.getString("producttype_name"));
 					/*
 					 * product.setCreatedBy(resultSet.getString("created_by"));
 					 * product.setModifiedBy(resultSet.getString("modified_by"));
 					 */
 					product.setCreatedDate(resultSet.getTimestamp("created_date"));
 					product.setModifiedDate(resultSet.getTimestamp("modified_date"));
+					//product.setImageName(resultSet.getString("name_image"));
 					results.add(product);
 				}
 				return results;

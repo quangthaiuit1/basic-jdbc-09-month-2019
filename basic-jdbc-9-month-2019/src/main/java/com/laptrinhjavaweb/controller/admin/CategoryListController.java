@@ -35,7 +35,7 @@ public class CategoryListController extends HttpServlet{
 		else{
 			// This is page current in view
 			request.setAttribute("currentPage",Integer.parseInt(pageStr));
-			int offset = ((Integer.parseInt(pageStr) - 1) * maxItemOnPage) + 1;
+			int offset = ((Integer.parseInt(pageStr) - 1) * maxItemOnPage);
 			list = CategoryService.findByLimit(offset, maxItemOnPage);
 		}
 		
