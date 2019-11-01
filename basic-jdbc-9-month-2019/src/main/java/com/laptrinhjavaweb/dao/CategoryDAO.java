@@ -44,11 +44,11 @@ public class CategoryDAO {
 		return null;
 	}
 	//Select pagination
-	public static List<Category> findByRows(int offset, int limit) {
+	public static List<Category> findByLimit(int offset, int limit) {
 		List<Category> results = new ArrayList<Category>();
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "select * from category Orders LIMIT ?, ?";
+		String sql = "select * from category LIMIT ?, ?";
 		ResultSet resultSet = null;
 		if (con != null) {
 			try {

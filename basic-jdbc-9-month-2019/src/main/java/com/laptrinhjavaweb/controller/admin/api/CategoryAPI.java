@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.controller.admin.api;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,10 +24,14 @@ public class CategoryAPI extends HttpServlet {
 		ObjectMapper objectMapper = new ObjectMapper();
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
+		
+		//Read object from json
 		Category category = HttpUtil.of(req.getReader()).toEntity(Category.class);
-		categoryService = new CategoryService();
 		categoryService.addOne(category);
+		//Write json from object
 		objectMapper.writeValue(resp.getOutputStream(), categoryService);
+		RequestDispatcher rd = req.getRequestDispatcher("/views/admin/categoryadd.jsp");
+		rd.forward(req, resp);
 	}
 
 	@Override

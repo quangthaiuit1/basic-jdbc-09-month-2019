@@ -6,7 +6,9 @@ public class User {
 	private int id;
 	private String userName;
 	private String passWord;
+	private String name;
 	private int roleId;
+	private String roleName;
 	private Timestamp createdDate;
 	private Timestamp modifiedDate;
 	public int getId() {
@@ -44,6 +46,18 @@ public class User {
 	}
 	public void setModifiedDate(Timestamp modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 	
 }

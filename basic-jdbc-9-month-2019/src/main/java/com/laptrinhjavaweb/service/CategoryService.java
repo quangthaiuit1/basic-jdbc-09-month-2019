@@ -11,13 +11,16 @@ public class CategoryService {
 		return CategoryDAO.findAll();
 	}
 	public static List<Category> findByLimit(int offset,int limit){
-		return CategoryDAO.findByRows(offset, limit);
+		return CategoryDAO.findByLimit(offset, limit);
 	}
 	// return total page of table based on number items one page
 	public static int totalPages(int maxItemOnePage) {
 		List<Category> list = new ArrayList<Category>();
 		list = CategoryDAO.findAll();
-		return list.size() / maxItemOnePage;
+		if(list.size() % maxItemOnePage == 0) {
+			return list.size() / maxItemOnePage;
+		}
+		else return (list.size() / maxItemOnePage) + 1;
 	}
 	public void addOne(Category category) {
 		CategoryDAO.addOne(category);
