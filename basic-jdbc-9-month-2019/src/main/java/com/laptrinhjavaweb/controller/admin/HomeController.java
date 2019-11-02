@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/admin-home"})
 public class HomeController extends HttpServlet {
@@ -16,7 +17,18 @@ public class HomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/home.jsp");
-		rd.forward(request, response);
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			if(session.getAttribute("roleName").equals("admin")) {
+				RequestDispatcher rd = request.getRequestDispatcher("/views/admin/home.jsp");
+				rd.forward(request, response);
+			}
+			else {
+				response.sendRedirect(request.getContextPath() + "/web-home");
+			}
+		}
+		else {
+			response.sendRedirect(request.getContextPath() + "/web-home");
+		}
 	}
 }

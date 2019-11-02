@@ -1,8 +1,6 @@
 package com.laptrinhjavaweb.controller.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,13 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.laptrinhjavaweb.entity.Category;
 import com.laptrinhjavaweb.entity.User;
-import com.laptrinhjavaweb.service.CategoryService;
 import com.laptrinhjavaweb.service.UserService;
 
-@WebServlet(urlPatterns = {"/web-home","/dang-nhap"})
+@WebServlet(urlPatterns = {"/web-home","/dang-nhap","/dang-xuat"})
 public class HomeController extends HttpServlet {
 
 	private static final long serialVersionUID = 2686801510274002166L;
@@ -27,15 +24,21 @@ public class HomeController extends HttpServlet {
 		
 		  //Check Home or Login | LogOut 
 		String pageStr = request.getParameter("action");
-		if(pageStr != null && pageStr.equals("dang-nhap")) {
+		if(pageStr != null && pageStr.equals("login")) {
 			RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
 			rd.forward(request, response); 
 		}
-		if(pageStr != null && pageStr.equals("dang-ky")) {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/web/logout.jsp");
-			rd.forward(request, response); } 
+		else if(pageStr != null && pageStr.equals("logout")) {
+			//invalidate the session if exists
+	        HttpSession session = request.getSession(false);
+	        if(session != null) {
+	        	session.invalidate();
+				response.sendRedirect(request.getContextPath() + "/web-home"); 
+	        }else {
+	        	response.sendRedirect(request.getContextPath() + "/web-home");
+	        }
+		}
 		else {
-		 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
 			rd.forward(request, response);
 		} 
@@ -49,17 +52,31 @@ public class HomeController extends HttpServlet {
 			String userName = request.getParameter("userName");
 			String passWord = request.getParameter("passWord");
 			User user = new User();
+			
+			//Select User has userName = userName
 			user = UserService.findByUserName(userName);
+			// Check esixt username
 			if(user.getUserName() != null && user.getUserName().equals(userName)) {
+				//Check password
 				if(user.getPassWord().equals(passWord)) {
 					if(user.getRoleName().equals("admin")) {
+						//Create session and set value
+						 HttpSession session = request.getSession();
+						 session.setAttribute("id", user.getId());
+						 session.setAttribute("userName", user.getUserName());
+						 session.setAttribute("passWord", user.getPassWord());
+						 session.setAttribute("roleName", user.getRoleName());
 						//get Name to show to view
 						request.setAttribute("name", user.getName());
 						response.sendRedirect(request.getContextPath() + "/admin-home"); 
 					}
 					else {
-						//get Name to show to view
-						request.setAttribute("name", user.getName());
+						//Create session and set value
+						 HttpSession session = request.getSession();
+						 session.setAttribute("id", user.getId());
+						 session.setAttribute("userName", user.getUserName());
+						 session.setAttribute("passWord", user.getPassWord());
+						 session.setAttribute("name",user.getName());
 						response.sendRedirect(request.getContextPath() + "/web-home"); 
 					}
 				}
@@ -78,9 +95,8 @@ public class HomeController extends HttpServlet {
 			}
 		}
 		else {
-			RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
-			rd.forward(request, response); 
-
+			RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

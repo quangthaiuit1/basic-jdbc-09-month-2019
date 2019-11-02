@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 	
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -12,20 +13,20 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Trang Chủ
-							<span class="sr-only">(current)</span>
-					</a></li>
+					<li class="nav-item active"><a class="nav-link" href="#">Trang Chủ<span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a>
-					</li>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="<c:url value='/dang-nhap?action=dang-nhap' />">Đăng Nhập</a>
-					</li>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Đăng Ký</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+					<% if (session.getAttribute("name") != null) { %>
+					<li class="nav-item"><a class="nav-link" href="<c:url value='#' />">Xin chào <c:out value='${sessionScope["name"]}' /> </a></li>			
+					<% } else {%>
+    				<li class="nav-item"><a class="nav-link" href="<c:url value='/dang-nhap?action=login' />">Đăng Nhập</a></li>			   
+					<% } %>
+					<% if (session.getAttribute("name") != null) { %>
+					<li class="nav-item"><a class="nav-link"  href="<c:url value='/dang-xuat?action=logout' />" >Thoát</a></li>			
+					<% } else {%>
+    				<li class="nav-item"><a class="nav-link" href="<c:url value='/dang-nhap?action=dang-nhap' />">Đăng Ký</a></li>			   
+					<% } %>
 				</ul>
 			</div>
 		</div>
