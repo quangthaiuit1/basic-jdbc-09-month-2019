@@ -22,13 +22,13 @@ public class CategoryService {
 		}
 		else return (list.size() / maxItemOnePage) + 1;
 	}
-	public void addOne(Category category) {
+	public static void addOne(Category category) {
 		CategoryDAO.addOne(category);
 	}
-	public void updateOne(Category category) {
+	public static void updateOne(Category category) {
 		CategoryDAO.updateOne(category);
 	}
-	public void delete(int[] id) {
+	public static void delete(int[] id) {
 		for(int i = 0; i < id.length; i++) {
 			CategoryDAO.delete(id[i]);
 		}

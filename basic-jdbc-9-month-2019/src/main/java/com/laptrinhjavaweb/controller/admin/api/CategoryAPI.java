@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.controller.admin.api;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,6 @@ import com.laptrinhjavaweb.utils.HttpUtil;
 @WebServlet(urlPatterns = { "/api-admin-category" })
 public class CategoryAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CategoryService categoryService;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +25,7 @@ public class CategoryAPI extends HttpServlet {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaa");
 		//Read object from json
 		Category category = HttpUtil.of(req.getReader()).toEntity(Category.class);
-		categoryService.addOne(category);
+		CategoryService.addOne(category);
 		objectMapper.writeValue(resp.getOutputStream(), category);
 	}
 
@@ -37,8 +35,7 @@ public class CategoryAPI extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		Category category = HttpUtil.of(req.getReader()).toEntity(Category.class);
-		categoryService = new CategoryService();
-		categoryService.updateOne(category);
+		CategoryService.updateOne(category);
 		objectMapper.writeValue(resp.getOutputStream(), category);
 	}
 
@@ -48,8 +45,7 @@ public class CategoryAPI extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		Category category = HttpUtil.of(req.getReader()).toEntity(Category.class);
-		categoryService = new CategoryService();
-		categoryService.delete(category.getIds());
+		CategoryService.delete(category.getIds());
 		objectMapper.writeValue(resp.getOutputStream(), category);
 	}
 }
