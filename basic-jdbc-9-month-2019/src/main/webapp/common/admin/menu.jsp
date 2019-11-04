@@ -14,10 +14,10 @@
 				</button>
 				<div class="dropdown-menu" >
 					<button type="button" style="width:100%;" class="btn btn-defaut" >
-						<a class="dropdown-item" href="<c:url value='/admin-category?page=1' /> " style="color:#ffffffff">Danh sách</a>
+						<a class="dropdown-item" href="<c:url value='/admin-category?action=list&page=1' /> " style="color:#ffffffff">Danh sách</a>
 					</button>
 					<button type="button" style="width:100%" class="btn .btn-default">
-						<a class="dropdown-item" href="<c:url value='/views/admin/categoryadd.jsp' /> " style="color:#ffffffff">Thêm</a>
+						<a class="dropdown-item" href="<c:url value='/admin-category?action=add' /> " style="color:#ffffffff">Thêm</a>
 					</button>
 					
 				</div>

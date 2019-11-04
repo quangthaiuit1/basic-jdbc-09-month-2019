@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 
-<form action="<c:url value='/admin-category'/>" method="get"
-	id="formCategory">
+<form action="<c:url value='/admin-category'/>" method="get" id="formCategory">
 	<div class="container">
 		<table class="table table-striped">
 			<thead>
@@ -19,14 +18,15 @@
 					<tr>
 						<td>${item.id}</td>
 						<td>${item.name}</td>
-						<td><button type="button" style="width:20%; heigh:5px" class="btn btn-warning">Sửa</button></td>
-						<td><button type="button" style="width:20%; heigh:50%" class="btn btn-danger">Xóa</button></td>
+						<td><button type="button" style="width:20%; heigh:5px" class="btn btn-warning" id="btnUpdate">Sửa</button></td>
+						<td><button type="button" style="width:20%; heigh:50%" class="btn btn-danger" id="btnDelete">Xóa</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<input type="hidden" value="" id="inputPage" name="page">
-
+		<input type="hidden" value="" id="id" name="id">
+		
 		<!-- Phân trang -->
 		<div class="container">
 			<nav aria-label="Page navigation">
@@ -53,5 +53,12 @@
 			});
 		</script>
 	<!-- End Phân trang -->
+		<script>
+			$(document).ready(function(){
+			  $("#btnUpdate").click(function(){
+			    console.log("OK");
+			  });
+			});
+		</script>
 	</div>
 </form>

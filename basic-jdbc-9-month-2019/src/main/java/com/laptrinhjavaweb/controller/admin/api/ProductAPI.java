@@ -15,15 +15,13 @@ import com.laptrinhjavaweb.utils.HttpUtil;
 @WebServlet(urlPatterns = { "/api-admin-product" })
 public class ProductAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ProductService productService;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		Product product = HttpUtil.of(req.getReader()).toEntity(Product.class);
-		productService = new ProductService();
-		productService.addOne(product);
+		ProductService.addOne(product);
 	}
 
 	@Override

@@ -50,16 +50,14 @@ public class UserDAO {
 		User user = new User();
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "SELECT u.id, u.username, u.password,u.role_id, r.name as role_name, r.created_date, r.modified_date, u.name as name\r\n" + 
-				"	FROM user as u\r\n" + 
-				"		INNER JOIN role as r ON u.role_id = r.id\r\n" + 
-				"			WHERE u.username = ? " ;
-		ResultSet resultSet = null;
+		String sql = "SELECT u.id, u.username, u.password,u.role_id, r.name as role_name, r.created_date, r.modified_date, u.name as name\r\n"
+				+ "	FROM user as u\r\n" + "		INNER JOIN role as r ON u.role_id = r.id\r\n"
+				+ "			WHERE u.username = ? ";
 		if (con != null) {
 			try {
 				statement = con.prepareStatement(sql);
 				statement.setString(1, userName);
-				resultSet = statement.executeQuery();
+				ResultSet resultSet = statement.executeQuery();
 				while (resultSet.next()) {
 					user.setId(resultSet.getInt("id"));
 					user.setUserName(resultSet.getString("username"));
@@ -68,27 +66,23 @@ public class UserDAO {
 					user.setRoleName(resultSet.getString("role_name"));
 					user.setName(resultSet.getString("name"));
 				}
+				resultSet.close();
 				return user;
 			} catch (SQLException e) {
 				return null;
 			} finally {
-				try {
-					ConnectionDAO.closeConnection(con, statement);
-					if (resultSet != null)
-						resultSet.close();
-				} catch (Exception e2) {
-					return null;
-				}
+				ConnectionDAO.closeConnection(con, statement);
 			}
 		}
 		return null;
 	}
+
 	// Select pagination
 	public static List<User> findByLimit(int offset, int limit) {
 		List<User> results = new ArrayList<User>();
 		Connection con = ConnectionDAO.getConnection();
 		PreparedStatement statement = null;
-		String sql = "select * from user LIMIT ?, ? " ;
+		String sql = "select * from user LIMIT ?, ? ";
 		ResultSet resultSet = null;
 		if (con != null) {
 			try {
